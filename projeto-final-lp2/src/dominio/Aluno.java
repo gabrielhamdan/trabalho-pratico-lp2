@@ -1,4 +1,4 @@
-package aluno;
+package dominio;
 
 import java.util.List;
 
@@ -11,10 +11,6 @@ public class Aluno {
 		this.cpf = cpf;
 		this.nome = nome;
 	}
-	
-	protected void adicionaMatricula(Matricula matricula) {
-		matriculas.add(matricula);
-	}
 
 	public String getCpf() {
 		return cpf;
@@ -26,5 +22,9 @@ public class Aluno {
 
 	public List<Matricula> getMatriculas() {
 		return matriculas;
+	}
+	
+	protected void adicionaMatricula(Matricula matricula) {
+		matriculas.add(matricula);
 	}
 }

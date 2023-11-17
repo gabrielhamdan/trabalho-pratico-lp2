@@ -1,4 +1,4 @@
-package disciplina;
+package dominio;
 
 public class Disciplina {
 	private String codigo;

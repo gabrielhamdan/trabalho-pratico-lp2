@@ -1,9 +1,6 @@
-package curso;
+package dominio;
 
 import java.util.List;
-
-import aluno.Matricula;
-import disciplina.Disciplina;
 
 public class Curso {
 	private String nome;
@@ -14,10 +11,6 @@ public class Curso {
 		this.nome = nome;
 	}
 	
-	public void incluiDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -28,5 +21,9 @@ public class Curso {
 
 	public List<Matricula> getMatriculas() {
 		return matriculas;
+	}
+	
+	public void incluiDisciplina(Disciplina disciplina) {
+		disciplinas.add(disciplina);
 	}
 }

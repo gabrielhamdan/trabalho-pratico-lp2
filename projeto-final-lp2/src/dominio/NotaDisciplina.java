@@ -1,6 +1,4 @@
-package disciplina;
-
-import semestre.AnoSemestre;
+package dominio;
 
 public class NotaDisciplina {
 	private float nota;
@@ -8,7 +6,10 @@ public class NotaDisciplina {
 	private Situacao situacao;
 	private AnoSemestre anoSemestre;
 	
-	public NotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) { // diagrama pede protected, mas isso não faz sentido
+	protected NotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) throws Exception {
+		if(disciplina == null || situacao == null)
+			throw new Exception("Disciplina e/ou Situação não pode(m) ter valor(es) nulo(s)!");
+		
 		this.nota = nota;
 		this.disciplina = disciplina;
 		this.situacao = situacao;
@@ -18,24 +19,12 @@ public class NotaDisciplina {
 		return nota;
 	}
 
-	public void setNota(float nota) {
-		this.nota = nota;
-	}
-
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
-	protected void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
 	public Situacao getSituacao() {
 		return situacao;
-	}
-
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
 	}
 	
 	public AnoSemestre getAnoSemestre() {
@@ -44,5 +33,9 @@ public class NotaDisciplina {
 
 	protected void setAnoSemestre(AnoSemestre anoSemestre) {
 		this.anoSemestre = anoSemestre;
+	}
+	
+	protected void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 }

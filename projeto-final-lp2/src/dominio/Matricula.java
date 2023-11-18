@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Matricula {
@@ -46,6 +47,9 @@ public class Matricula {
 	}
 	
 	public void registraAnoSemestre(int ano, int semestre) throws Exception {
+		if(anoSemestreLista == null)
+			anoSemestreLista = new ArrayList<AnoSemestre>();
+		
 		AnoSemestre anoSemestre = new AnoSemestre(ano, semestre, this);
 		anoSemestreLista.add(anoSemestre);
 	}

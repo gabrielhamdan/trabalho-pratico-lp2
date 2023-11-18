@@ -8,13 +8,14 @@ public class Aplicacao {
 		CADASTRA_DISCIPLINA(1),
 		CADASTRA_CURSO(2),
 		INCLUI_DISCIPLINA_CURSO(3),
-		EFETUA_MATRICULA_ALUNO_CURSO(4),
-		CRIA_REGISTRO_ANO_SEMESTRE(5),
-		REGISTRA_HISTORICO(6),
-		GERA_HISTORICO(7),
-		LISTA_DISCIPLINAS_CURSO(8),
-		MOSTRA_DISCIPLINAS_FALTANTES(9),
-		SAIR(10);
+		CADASTRA_ALUNO(4),
+		EFETUA_MATRICULA_ALUNO_CURSO(5),
+		CRIA_REGISTRO_ANO_SEMESTRE(6),
+		REGISTRA_HISTORICO(7),
+		GERA_HISTORICO(8),
+		LISTA_DISCIPLINAS_CURSO(9),
+		MOSTRA_DISCIPLINAS_FALTANTES(10),
+		SAIR(11);
 		
 		public final int opcaoMenu;
 		
@@ -31,34 +32,27 @@ public class Aplicacao {
 		}
 	}
 	
-	private boolean ehTesteAutom;
-	private boolean encerraExecucao = false;
-	private List<Curso> cursos = new ArrayList<Curso>();
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	private List<Aluno> alunos = new ArrayList<Aluno>();
-	private List<Matricula> matriculas = new ArrayList<Matricula>();
-	
-	Aplicacao(boolean ehTesteAutom) {
-		this.ehTesteAutom = ehTesteAutom;
-	}
+	public boolean encerraExecucao = false;
+	public List<Curso> cursos = new ArrayList<Curso>();
+	public List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	public List<Aluno> alunos = new ArrayList<Aluno>();
+	public List<Matricula> matriculas = new ArrayList<Matricula>();
 	
 	public void imprimeMenuPrincipal() {
 		Util.imprimeMsg(" 1 -  Cadastrar disciplina", true);
 		Util.imprimeMsg(" 2 -  Cadastrar curso", true);
 		Util.imprimeMsg(" 3 -  Incluir disciplina em curso", true);
-		Util.imprimeMsg(" 4 -  Efetuar matrícula", true);
-		Util.imprimeMsg(" 5 -  Registrar ano/semestre", true);
-		Util.imprimeMsg(" 6 -  Registrar histórico", true);
-		Util.imprimeMsg(" 7 -  Gerar histórico", true);
-		Util.imprimeMsg(" 8 -  Listar disciplinas", true);
-		Util.imprimeMsg(" 9 -  Listas disciplinas restantes", true);
-		Util.imprimeMsg("10 -  Sair", true);
+		Util.imprimeMsg(" 4 -  Cadastrar aluno", true);
+		Util.imprimeMsg(" 5 -  Efetuar matrícula", true);
+		Util.imprimeMsg(" 6 -  Registrar ano/semestre", true);
+		Util.imprimeMsg(" 7 -  Registrar histórico", true);
+		Util.imprimeMsg(" 8 -  Gerar histórico", true);
+		Util.imprimeMsg(" 9 -  Listar disciplinas", true);
+		Util.imprimeMsg("10 -  Listar disciplinas restantes", true);
+		Util.imprimeMsg("11 -  Sair", true);
 	}
 	
-	public void carregaMenuPrincipal() {
-		if(ehTesteAutom)
-			return;
-		
+	public void carregaMenuPrincipal() throws Exception {		
 		while(!encerraExecucao) {
 			imprimeMenuPrincipal();
 			
@@ -74,6 +68,35 @@ public class Aplicacao {
 					break;
 				case CADASTRA_CURSO:
 					cadastraCurso();
+					break;
+				case INCLUI_DISCIPLINA_CURSO:
+					incluiDisciplinaCurso();
+					break;
+				case CADASTRA_ALUNO:
+					cadastraAluno();
+					break;
+				case EFETUA_MATRICULA_ALUNO_CURSO:
+					efetuaMatriculaAluno();
+					break;
+				case CRIA_REGISTRO_ANO_SEMESTRE:
+					criaRegistroAnoSemestreAluno();
+					break;
+				case REGISTRA_HISTORICO:
+					registraHistoricoAluno();
+					break;
+				case GERA_HISTORICO:
+					pesquisaHistoricoAluno(true);
+					break;
+				case LISTA_DISCIPLINAS_CURSO:
+					listaDisciplinasCurso();
+					break;
+				case MOSTRA_DISCIPLINAS_FALTANTES:
+					listaDisciplinasFaltantesAluno();
+					break;
+				case SAIR:
+					encerraExecucao = true;
+					break;
+				default:
 					break;
 			}
 		}
@@ -152,7 +175,6 @@ public class Aplicacao {
 		
 		if(alunoMatricula == null) {
 			Util.imprimeMsg(String.format("Aluno %s não encontrado.\n", nomeCpf));
-			efetuaMatriculaAluno();
 			return;
 		}
 				
@@ -167,7 +189,6 @@ public class Aplicacao {
 		
 		if(cursoMatricula == null) {
 			Util.imprimeMsg(String.format("Curso %s não encontrado.\n", nomeCurso));
-			efetuaMatriculaAluno();
 			return;
 		}
 		
@@ -187,7 +208,6 @@ public class Aplicacao {
 		
 		if(aluno == null) {
 			Util.imprimeMsg(String.format("Aluno %s não encontrado.\n", nomeCpf));
-			criaRegistroAnoSemestreAluno();
 			return;
 		}
 		
@@ -217,7 +237,6 @@ public class Aplicacao {
 		
 		int ano = Util.digitaInt("Digite o ano: ");
 		int semestre = Util.digitaInt("Digite o semestre: ");
-		matricula.registraAnoSemestre(ano, semestre);
 		
 		for(AnoSemestre anoSemestre : matricula.listaAnoSemestre())
 			if(anoSemestre.getAno() == ano && anoSemestre.getSemestre() == semestre) {
@@ -225,7 +244,6 @@ public class Aplicacao {
 				
 				if(disciplina == null) {
 					Util.imprimeMsg(String.format("Disciplina não encontrada no curso %s\n", matricula.getCurso().getNome()));
-					carregaMenuPrincipal();
 					return;
 				}
 				
@@ -341,8 +359,6 @@ public class Aplicacao {
 				break;
 			}
 		}
-		
-		carregaMenuPrincipal();
 	}
 	
 	/*
@@ -357,11 +373,11 @@ public class Aplicacao {
 		List<Disciplina> disciplinasCurso = curso.getDisciplinas();
 		List<String> disciplinasNaoCursadas = new ArrayList<String>();
 		
-		for(Disciplina disciplinaCurso : disciplinasAprovado) {
+		for(Disciplina disciplinaCurso : disciplinasCurso) {
 			boolean cursouDisciplina = false;
 			String disciplinaCod = disciplinaCurso.getCodigo();
 			
-			for(Disciplina disciplinaAprovado : disciplinasCurso)
+			for(Disciplina disciplinaAprovado : disciplinasAprovado)
 				if(disciplinaAprovado.getCodigo().equals(disciplinaCod))
 					cursouDisciplina = true;
 			

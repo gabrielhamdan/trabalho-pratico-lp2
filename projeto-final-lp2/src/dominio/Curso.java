@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
@@ -24,6 +25,9 @@ public class Curso {
 	}
 	
 	public void incluiDisciplina(Disciplina disciplina) {
+		if(disciplinas == null)
+			disciplinas = new ArrayList<Disciplina>();
+		
 		disciplinas.add(disciplina);
 	}
 }

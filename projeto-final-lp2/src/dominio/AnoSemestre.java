@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnoSemestre {
@@ -30,6 +31,9 @@ public class AnoSemestre {
 	}
 	
 	public NotaDisciplina registraNotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) throws Exception {
+		if(listaNotaDisciplina == null)
+			listaNotaDisciplina = new ArrayList<NotaDisciplina>();
+		
 		NotaDisciplina notaDisciplina = new NotaDisciplina(nota, disciplina, situacao);
 		listaNotaDisciplina.add(notaDisciplina);
 		

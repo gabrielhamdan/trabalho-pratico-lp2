@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
@@ -25,6 +26,9 @@ public class Aluno {
 	}
 	
 	protected void adicionaMatricula(Matricula matricula) {
+		if(matriculas == null)
+			matriculas = new ArrayList<Matricula>();
+		
 		matriculas.add(matricula);
 	}
 }

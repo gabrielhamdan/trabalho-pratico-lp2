@@ -5,15 +5,22 @@ import java.util.Scanner;
 public class Util {
 	private static Scanner scanner = new Scanner(System.in);
 	
+	private static void consomeChar() {
+		scanner.nextLine();
+	}
+	
 	public static int digitaInt() {
 		return digitaInt("");
 	}
 	
 	public static int digitaInt(String msg) {
-		if(!msg.equals(""))
-			imprimeMsg(msg);
+		imprimeMsg(msg);
 			
-		return scanner.nextInt();
+		int i = scanner.nextInt();
+		
+		consomeChar();
+		
+		return i;
 	}
 
 	public static String digitaString() {
@@ -32,13 +39,26 @@ public class Util {
 	}
 	
 	public static float digitaFloat(String msg) {
-		if(!msg.equals(""))
-			imprimeMsg(msg);
+		imprimeMsg(msg);
 		
-		return scanner.nextFloat();
+		float f = scanner.nextFloat();
+		
+		consomeChar();
+		
+		return f;
 	}
 	
 	public static void imprimeMsg(String msg) {
-		System.out.print(msg);
+		imprimeMsg(msg, false);
+	}
+	
+	public static void imprimeMsg(String msg, boolean novaLinha) {
+		if(msg.equals(""))
+			return;
+		
+		if(novaLinha)
+			System.out.println(msg);
+		else
+			System.out.print(msg);
 	}
 }

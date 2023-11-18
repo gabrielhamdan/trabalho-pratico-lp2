@@ -29,7 +29,7 @@ public class AnoSemestre {
 		return matricula;
 	}
 	
-	public NotaDisciplina registraNotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) throws Exception { // Precisa mesmo retornar NotaDisciplina? Por quê?
+	public NotaDisciplina registraNotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) throws Exception {
 		NotaDisciplina notaDisciplina = new NotaDisciplina(nota, disciplina, situacao);
 		listaNotaDisciplina.add(notaDisciplina);
 		

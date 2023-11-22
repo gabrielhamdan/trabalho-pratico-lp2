@@ -9,7 +9,7 @@ public class Matricula {
 	private int semestre;
 	private Aluno aluno;
 	private Curso curso;
-	private List<AnoSemestre> anoSemestreLista;
+	private List<AnoSemestre> anoSemestreLista = new ArrayList<AnoSemestre>();
 	
 	public Matricula(String matricula, int ano, int semestre, Aluno aluno, Curso curso) throws Exception {
 		if(aluno == null || curso == null)
@@ -47,9 +47,6 @@ public class Matricula {
 	}
 	
 	public void registraAnoSemestre(int ano, int semestre) throws Exception {
-		if(anoSemestreLista == null)
-			anoSemestreLista = new ArrayList<AnoSemestre>();
-		
 		AnoSemestre anoSemestre = new AnoSemestre(ano, semestre, this);
 		anoSemestreLista.add(anoSemestre);
 	}

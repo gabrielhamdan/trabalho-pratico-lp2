@@ -6,7 +6,7 @@ import java.util.List;
 public class Aluno {
 	private String cpf;
 	private String nome;
-	private List<Matricula> matriculas;
+	private List<Matricula> matriculas = new ArrayList<Matricula>();;
 	
 	public Aluno(String cpf, String nome) {
 		this.cpf = cpf;
@@ -26,9 +26,6 @@ public class Aluno {
 	}
 	
 	protected void adicionaMatricula(Matricula matricula) {
-		if(matriculas == null)
-			matriculas = new ArrayList<Matricula>();
-		
 		matriculas.add(matricula);
 	}
 }

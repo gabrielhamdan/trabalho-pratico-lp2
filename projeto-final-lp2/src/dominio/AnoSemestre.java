@@ -7,7 +7,7 @@ public class AnoSemestre {
 	private int ano;
 	private int semestre;
 	private Matricula matricula;
-	private List<NotaDisciplina> listaNotaDisciplina;
+	private List<NotaDisciplina> listaNotaDisciplina = new ArrayList<NotaDisciplina>();;
 	
 	protected AnoSemestre(int ano, int semestre, Matricula matricula) throws Exception {
 		if(matricula == null)
@@ -31,9 +31,6 @@ public class AnoSemestre {
 	}
 	
 	public NotaDisciplina registraNotaDisciplina(float nota, Disciplina disciplina, Situacao situacao) throws Exception {
-		if(listaNotaDisciplina == null)
-			listaNotaDisciplina = new ArrayList<NotaDisciplina>();
-		
 		NotaDisciplina notaDisciplina = new NotaDisciplina(nota, disciplina, situacao);
 		listaNotaDisciplina.add(notaDisciplina);
 		

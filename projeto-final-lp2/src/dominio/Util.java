@@ -28,8 +28,7 @@ public class Util {
 	}
 	
 	public static String digitaString(String msg) {
-		if(!msg.equals(""))
-			imprimeMsg(msg);
+		imprimeMsg(msg);
 		
 		return scanner.nextLine();
 	}

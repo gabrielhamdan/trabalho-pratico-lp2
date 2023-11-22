@@ -39,17 +39,17 @@ public class Aplicacao {
 	public List<Matricula> matriculas = new ArrayList<Matricula>();
 	
 	public void imprimeMenuPrincipal() {
-		Util.imprimeMsg(" 1 -  Cadastrar disciplina", true);
-		Util.imprimeMsg(" 2 -  Cadastrar curso", true);
-		Util.imprimeMsg(" 3 -  Incluir disciplina em curso", true);
-		Util.imprimeMsg(" 4 -  Cadastrar aluno", true);
-		Util.imprimeMsg(" 5 -  Efetuar matrícula", true);
-		Util.imprimeMsg(" 6 -  Registrar ano/semestre", true);
-		Util.imprimeMsg(" 7 -  Registrar histórico", true);
-		Util.imprimeMsg(" 8 -  Gerar histórico", true);
-		Util.imprimeMsg(" 9 -  Listar disciplinas", true);
-		Util.imprimeMsg("10 -  Listar disciplinas restantes", true);
-		Util.imprimeMsg("11 -  Sair", true);
+		Util.imprimeMsg(" 1 - Cadastrar disciplina", true);
+		Util.imprimeMsg(" 2 - Cadastrar curso", true);
+		Util.imprimeMsg(" 3 - Incluir disciplina em curso", true);
+		Util.imprimeMsg(" 4 - Cadastrar aluno", true);
+		Util.imprimeMsg(" 5 - Efetuar matrícula", true);
+		Util.imprimeMsg(" 6 - Registrar ano/semestre", true);
+		Util.imprimeMsg(" 7 - Registrar histórico", true);
+		Util.imprimeMsg(" 8 - Gerar histórico", true);
+		Util.imprimeMsg(" 9 - Listar disciplinas", true);
+		Util.imprimeMsg("10 - Listar disciplinas restantes", true);
+		Util.imprimeMsg("11 - Sair", true);
 	}
 	
 	public void carregaMenuPrincipal() throws Exception {		
@@ -322,7 +322,7 @@ public class Aplicacao {
 			for(NotaDisciplina notaDisciplina : anoSemestre.listaNotaDisciplina()) {
 				if(imprimeHistorico)
 					Util.imprimeMsg(
-						String.format("%s | %d/%d | %f | %s\n", 
+						String.format("%s | %d/%d | %.2f | %s\n", 
 						notaDisciplina.getDisciplina().getCodigo(), 
 						notaDisciplina.getAnoSemestre().getAno(), 
 						notaDisciplina.getAnoSemestre().getSemestre(), 
@@ -341,12 +341,6 @@ public class Aplicacao {
 	public void listaDisciplinasCurso() {
 		String nomeCurso = Util.digitaString("Digite o nome do curso: ");
 		
-		/*
-		 * Em outro tipo de aplicação seria evidentemente mais apropriado tratar para o usuário 
-		 * os casos em que o curso não existe e os cursos sem disciplinas cadastradas (algo nos termos do que já foi
-		 * implementado, por exemplo, no método incluiDisciplinaCurso()).
-		 * Consciente disso, vou me furtar desse tipo de fluxo alternativo neste caso.
-		 * */
 		for(Curso curso : cursos) {
 			if(curso.getNome().equals(nomeCurso)) {
 				int i = 1;
@@ -363,7 +357,7 @@ public class Aplicacao {
 	
 	/*
 	 * A regra para este método não é clara, i. e., as disciplinas que faltam cursar são aquelas que o aluno 
-	 * jamais cursou ou, inclusive, as que cursou sem aprovação? Optou-se por considerar que faltam cursar todas as 
+	 * jamais cursou ou, inclusive, as que cursou SEM considerar aprovação? Optei por considerar que faltam cursar todas as 
 	 * disciplinas reprovadas e/ou não cursadas.
 	 * */
 	public void listaDisciplinasFaltantesAluno() {
